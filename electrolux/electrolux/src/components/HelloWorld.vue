@@ -6,7 +6,7 @@
       <div id="speaker"></div>
       <div id="calculator">
         <div class="row">
-          <p class="display target0">{{ equationArray }}</p>
+          <p class="display target0">{{ equationDisplay }}</p>
           <div class="clear"></div>
         </div>
         <div class="row">
@@ -57,7 +57,7 @@ export default {
   data () {
     return {
       equationArray: [],
-      equationDisplay: [0]
+      equationDisplay: []
     }
   },
   methods: {
@@ -68,7 +68,8 @@ export default {
     resolveEquation: function () {
       // when we click equal, resolve everything
       // alert(this.equationArray.join(""))
-      alert(eval(this.equationArray.join("")))
+      var test = eval(this.equationArray.join(""))
+      this.equationDisplay = test
     }
   }
 }
