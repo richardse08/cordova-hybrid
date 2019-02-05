@@ -10,7 +10,8 @@
           <div class="clear"></div>
         </div>
         <div class="row">
-          <div class="clearout grey">AC</div>
+          <!-- <div class="clearout grey">AC</div> -->
+          <button v-on:click="equationArrayMethod('ac')" class="clearout grey" >AC</button>
           <div class="polarity-button grey">+/-</div>
           <div class="pct-button percent grey">%</div>
           <div class="event-button orange">/</div>
@@ -20,20 +21,22 @@
           <button v-on:click="equationArrayMethod(7)" class="number white">7</button>
           <button v-on:click="equationArrayMethod(8)" class="number white">8</button>
           <button v-on:click="equationArrayMethod(9)" class="number white">9</button>
-          <div class="event-button orange">*</div>
+          <button v-on:click="equationArrayMethod('*')" class="event-button orange" >*</button>
+          <!-- <div class="event-button orange">*</div> -->
           <div class="clear"></div>
         </div>
         <div class="row">
           <button v-on:click="equationArrayMethod(4)" class="number white">4</button>
           <button v-on:click="equationArrayMethod(5)" class="number white">5</button>
           <button v-on:click="equationArrayMethod(6)" class="number white">6</button>
-          <div class="event-button orange">-</div>
+          <button v-on:click="equationArrayMethod('-')" class="event-button orange">-</button>
+          <!-- <div class="event-button orange">-</div> -->
           <div class="clear"></div>
         </div>
         <div class="row">
           <button v-on:click="equationArrayMethod(1)" class="number white">1</button>
           <button v-on:click="equationArrayMethod(2)" class="number white">2</button>
-          <button v-on:click="equationArrayMethod('3')" class="number white">3</button>
+          <button v-on:click="equationArrayMethod(3)" class="number white">3</button>
           <button v-on:click="equationArrayMethod('+')" class="event-button orange">+</button>
           <div class="clear"></div>
         </div>
@@ -57,19 +60,26 @@ export default {
   data () {
     return {
       equationArray: [],
-      equationDisplay: []
+      equationDisplay: 0
     }
   },
   methods: {
     equationArrayMethod: function (symbol) {
-      // when we click a number, add it to an array
-      this.equationArray.push(symbol)
+      if (symbol == 'ac') {
+        console.log('symbol is ac')
+        this.clearDisplay()
+      }
+      else {
+        this.equationArray.push(symbol)
+      }
     },
     resolveEquation: function () {
-      // when we click equal, resolve everything
-      // alert(this.equationArray.join(""))
-      var test = eval(this.equationArray.join(""))
-      this.equationDisplay = test
+      var arithmetic = eval(this.equationArray.join(""))
+      this.equationDisplay = arithmetic
+    },
+    clearDisplay: function () {
+      this.equationArray = 0
+      this.equationDisplay = 0
     }
   }
 }
@@ -86,7 +96,7 @@ ul {
 }
 li {
   display: inline-block;
-  margin: 0 10px;
+  /* margin: 0 10px; */
 }
 a {
   color: #42b983;
@@ -112,8 +122,9 @@ p {
     font-size: 22px;
     font-family: monospace;
     text-align: center;
-    padding: 70px;
-    margin: 30px;
+    /* padding: 70px; */
+    padding: 40px 5px 0 0;
+    /* margin: 30px; */
 }
 .footer {
     color: darkturquoise;
@@ -220,7 +231,7 @@ p {
     box-sizing: border-box;
     height: 100px;
     width: 200px;
-    float: left;
+    /* float: left; */
     text-align: right;
     background-color: black;
 }
